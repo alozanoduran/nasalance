@@ -29,14 +29,14 @@ import os
 # AUDIO_FOLDER: carpeta donde se almacenan todos los conjuntos de audios.
 # AUDIO_DATABASE: carpeta con el conjunto de audios que vamos a procesar.
 AUDIO_FOLDER = "audio_database"     
-AUDIO_DATABASE = "audios3m_test"
+AUDIO_DATABASE = "audios25m_test"
 
 
 # Salida
 # RESULT_FOLDER: carpeta donde se guardan los resultados
 # RESULT_DATABASE: nombre del fichero de salida.
 RESULT_FOLDER = "resultadosBaseDatos"
-RESULT_DATABASE = "pruebas_andres.csv"
+RESULT_DATABASE = "audios25m_test_andres.csv"
 
 
 # Parámetros de ventanas de audio en ms.
@@ -69,7 +69,7 @@ WIN_COLUMN_NAME = ["window"]
 # Descriptores.
 # Los descriptores que se pueden calcular:
 # "mfcc"                    mfcc
-# TODO"mfcc_librosa"        mfcc librosa)    
+# TODO"mfcc_librosa"        mfcc librosa    
 # "delta"                   delta mfcc
 # "deltaDelta"              delta delta
 # TODO "vlhr"               6 mfcc con frecuencia de corte 400,500,...,900 Hz
@@ -81,7 +81,15 @@ WIN_COLUMN_NAME = ["window"]
 FEATURES_TO_CALCULATE = ["mfcc", "delta", "deltaDelta"]
 
 # MFCC 
-NUM_MFCC = 13
+#https://python-speech-features.readthedocs.io/en/latest/index.html
+NUMCEP = 13
+NFILT=26
+NFFT=1024
+LOWFREQ=0
+HIGHFREQ=None
+PREEMPH=0.97
+CEPLIFTER=22
+APPENDENERGY=True
 # TODO: Incluir el resto de parámetros que se pueden configurar aquí
 
 # MFCC librosa
@@ -151,6 +159,6 @@ if not os.path.exists(RESULT_FOLDER):
 AUDIO_PATH = os.path.join(os.getcwd(), AUDIO_FOLDER, AUDIO_DATABASE)
 RESULT_PATH = os.path.join(os.getcwd(), RESULT_FOLDER, RESULT_DATABASE)
 
-MFCC_NAMES = [f"mfcc{x}" for x in range(0, NUM_MFCC)]
-DELTA_NAMES = [f"delta{x}" for x in range(0, NUM_MFCC)]
-DELTA_DELTA_NAMES = [f"deltaDelta{x}" for x in range(0, NUM_MFCC)]
+MFCC_NAMES = [f"mfcc{x}" for x in range(0, NUMCEP)]
+DELTA_NAMES = [f"delta{x}" for x in range(0, NUMCEP)]
+DELTA_DELTA_NAMES = [f"deltaDelta{x}" for x in range(0, NUMCEP)]
